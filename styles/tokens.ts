@@ -9,7 +9,11 @@ export const colors = {
 }
 
 export const gaps = {
-    Default: 4
+    Default: 4,
+
+    Small: 8,
+
+    Medium: 16,
 }
 
 export const radiuses = {
