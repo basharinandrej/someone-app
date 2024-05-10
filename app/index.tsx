@@ -1,12 +1,16 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { Link } from 'expo-router'
+import { Link, SplashScreen } from 'expo-router'
 import {Input} from '../shared/input/input'
 import {colors, gaps, radiuses, fontSize} from '../styles/tokens'
 
 export default function App() {
   const [login, setLogin] = useState('')
   const [password, setPassword] = useState('')
+
+  useEffect(() => {
+    SplashScreen.hideAsync()
+  }, [])
 
   return (
     <View style={styles.container}>
@@ -26,7 +30,7 @@ export default function App() {
       </View>
       
       <Link href={'/restore'}>
-        <Text>Войти</Text>
+        <Text style={{color: colors.Secondary}}>Войти</Text>
       </Link>
     </View>
   );
@@ -35,7 +39,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.Primary,
     alignItems: 'center',
     justifyContent: 'center',
   },
