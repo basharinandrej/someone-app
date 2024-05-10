@@ -1,8 +1,8 @@
 import { Stack } from "expo-router";
 import { colors } from "../styles/tokens";
-import { Text } from "react-native";
 import {StatusBar} from 'expo-status-bar'
 import { SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
+import { mixins } from '../styles/mixins';
 
 export default function RootLayout() {
     
@@ -18,7 +18,8 @@ export default function RootLayout() {
         <Stack
             screenOptions={{
                 contentStyle: {
-                    backgroundColor: colors.Primary
+                    backgroundColor: colors.Primary,
+                    ...mixins.center
                 },
                 headerShown: false
             }}

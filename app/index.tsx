@@ -3,7 +3,6 @@ import { StyleSheet, Text, View } from 'react-native';
 import { Link, SplashScreen } from 'expo-router'
 import {Input} from '../shared/input/input'
 import {colors, gaps, radiuses, fontSize} from '../styles/tokens'
-import { mixins } from '../styles/mixins';
 
 export default function App() {
   const [login, setLogin] = useState('')
@@ -14,7 +13,7 @@ export default function App() {
   }, [])
 
   return (
-    <View style={styles.container}>
+    <>
       <Text style={styles.title}>Авторизация</Text>
       <View>
         <Input
@@ -33,12 +32,11 @@ export default function App() {
       <Link href={'/restore'}>
         <Text style={{color: colors.Secondary}}>Войти</Text>
       </Link>
-    </View>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
-  container: mixins.center,
   title: {
     color: colors.Secondary,
     marginBottom: gaps.Default * 6,
