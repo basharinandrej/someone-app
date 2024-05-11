@@ -2,10 +2,8 @@ import { Stack } from "expo-router";
 import { colors } from "../styles/tokens";
 import {StatusBar} from 'expo-status-bar'
 import { SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
-import { mixins } from '../styles/mixins';
 
 export default function RootLayout() {
-    
     const insets = useSafeAreaInsets()
 
     return <SafeAreaProvider
@@ -18,13 +16,12 @@ export default function RootLayout() {
         <Stack
             screenOptions={{
                 contentStyle: {
-                    backgroundColor: colors.Primary,
-                    ...mixins.center
+                    backgroundColor: colors.Third,
                 },
                 headerShown: false
             }}
         >
-            <Stack.Screen name="index" options={{
+            <Stack.Screen name="login" options={{
                 title: 'Авторизация'
             }}/>
             <Stack.Screen name="restore" options={{

@@ -3,6 +3,7 @@
 export const colors = {
     Primary: '#16171d',
     Secondary: '#fff',
+    Third: '#3F0362',
 
     Border: 'silver',
     Placeholder: '#5D5B5B'

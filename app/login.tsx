@@ -4,7 +4,7 @@ import { Link, SplashScreen } from 'expo-router'
 import {Input} from '../shared/input/input'
 import {colors, gaps, radiuses, fontSize} from '../styles/tokens'
 
-export default function App() {
+export default function Login() {
   const [login, setLogin] = useState('')
   const [password, setPassword] = useState('')
 
@@ -30,7 +30,11 @@ export default function App() {
       </View>
       
       <Link href={'/restore'}>
-        <Text style={{color: colors.Secondary}}>Войти</Text>
+        <Text style={{color: colors.Secondary}}>Восстановить пароль</Text>
+      </Link>
+
+      <Link href={'/'}>
+        <Text style={{color: colors.Secondary}}>Главная</Text>
       </Link>
     </>
   );
