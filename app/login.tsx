@@ -1,23 +1,40 @@
 import { useEffect, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { Link, SplashScreen } from 'expo-router'
+import { Button, StyleSheet, Text, View } from 'react-native';
+import { Link, SplashScreen, router } from 'expo-router'
 import {Input} from '../shared/input/input'
 import {colors, gaps, radiuses, fontSize} from '../styles/tokens'
+import { useAtomValue, useSetAtom } from 'jotai';
+import { loginAtom, logoutAtom } from './entities/auth/model/auth.store';
 
 export default function Login() {
-  const [login, setLogin] = useState('')
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+
+  const login = useSetAtom(loginAtom)
+  const {access_token, error} = useAtomValue(loginAtom)
 
   useEffect(() => {
     SplashScreen.hideAsync()
   }, [])
+
+  useEffect(() => {
+    if(access_token) {
+      router.replace('/')
+    }
+  }, [access_token])
+
+  const onPressHandler = () => {
+    login({
+      password, email
+    })
+  }
 
   return (
     <>
       <Text style={styles.title}>Авторизация</Text>
       <View>
         <Input
-          onChange={(e) => setLogin(e.nativeEvent.text)}
+          onChange={(e) => setEmail(e.nativeEvent.text)}
           style={[styles.input, styles.passwordInput]} 
           placeholder='Логин'
         />
@@ -36,6 +53,10 @@ export default function Login() {
       <Link href={'/'}>
         <Text style={{color: colors.Secondary}}>Главная</Text>
       </Link>
+
+      <Button disabled={!password || !email} title={'Войти'} onPress={onPressHandler} />
+
+      {error && <Text>{error}</Text>}
     </>
   );
 }

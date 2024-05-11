@@ -48,7 +48,7 @@ export const loginAtom = atom(
 
 export const logoutAtom = atom(
     null, 
-    (get, set) => {
+    (_get, set) => {
         set(authAtom, INITIAL_STATE)
     }
 )

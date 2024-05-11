@@ -1,6 +1,5 @@
 import { Redirect, Stack } from "expo-router";
 import { colors } from "../../styles/tokens";
-import { useEffect } from "react";
 import { loginAtom } from "../entities/auth/model/auth.store";
 import { useAtomValue } from "jotai";
 
