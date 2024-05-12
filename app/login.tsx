@@ -4,7 +4,8 @@ import { Link, SplashScreen, router } from 'expo-router'
 import {Input} from '../shared/input/input'
 import {colors, gaps, radiuses, fontSize} from '../styles/tokens'
 import { useAtomValue, useSetAtom } from 'jotai';
-import { loginAtom, logoutAtom } from './entities/auth/model/auth.store';
+import { loginAtom } from './entities/auth/model/auth.store';
+import { mixins } from '../styles/mixins';
 
 export default function Login() {
   const [email, setEmail] = useState('')
@@ -23,15 +24,14 @@ export default function Login() {
     }
   }, [access_token])
 
-  const onPressHandler = () => {
+  const submitHandler = () => {
     login({
       password, email
     })
   }
 
   return (
-    <>
-      <Text style={styles.title}>Авторизация</Text>
+    <View style={styles.container}>
       <View>
         <Input
           onChange={(e) => setEmail(e.nativeEvent.text)}
@@ -46,22 +46,22 @@ export default function Login() {
         />
       </View>
       
+      <Button disabled={!password || !email} title={'Войти'} onPress={submitHandler} />
+
       <Link href={'/restore'}>
         <Text style={{color: colors.Secondary}}>Восстановить пароль</Text>
       </Link>
-
-      <Link href={'/'}>
-        <Text style={{color: colors.Secondary}}>Главная</Text>
-      </Link>
-
-      <Button disabled={!password || !email} title={'Войти'} onPress={onPressHandler} />
-
-      {error && <Text>{error}</Text>}
-    </>
+      {error && <Text style={styles.error}>{error}</Text>}
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
+  container: mixins.center,
+  error: {
+    color: colors.Danger,
+    marginTop: gaps.Small,
+  },
   title: {
     color: colors.Secondary,
     marginBottom: gaps.Default * 6,
@@ -74,19 +74,20 @@ const styles = StyleSheet.create({
     marginBottom: gaps.Default * 6,
   },
   input: {
-    borderColor: colors.Border,
-    color: colors.Secondary,
+    backgroundColor: colors.Accent,
+    borderColor: colors.Accent,
+    color: colors.Default,
 
     width: 300,
-    fontSize: fontSize.ExtraMedium,
-    padding: gaps.Default,
-    paddingLeft: gaps.Default * 3,
+    fontSize: fontSize.Small,
+    padding: gaps.ExtraMedium,
+    paddingLeft: gaps.Large,
 
     borderWidth: 1,
 
-    borderBottomEndRadius: radiuses.Default,
-    borderTopEndRadius: radiuses.Default,
-    borderTopStartRadius: radiuses.Default,
-    borderBottomStartRadius: radiuses.Default
+    borderBottomEndRadius: radiuses.Medium,
+    borderTopEndRadius: radiuses.Medium,
+    borderTopStartRadius: radiuses.Medium,
+    borderBottomStartRadius: radiuses.Medium
   }
 });
