@@ -1,11 +1,12 @@
 import { Redirect } from "expo-router";
-import { colors } from "../../styles/tokens";
+import { colors, gaps } from "../../styles/tokens";
 import { loginAtom } from "../entities/auth/model/auth.store";
 import { useAtomValue } from "jotai";
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Drawer } from 'expo-router/drawer';
-import { Button } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { CustomDrawer } from "../../widgets/custom-drawer/custom-drawer";
+import BurgerIcon from "../../assets/icons/burger-icon";
 
 
 export default function AppLayout() {
@@ -16,7 +17,7 @@ export default function AppLayout() {
     }
 
     return (
-        <GestureHandlerRootView style={{ flex: 1 }}>
+        <GestureHandlerRootView >
             <Drawer
                 drawerContent={(props) => {
                     return <CustomDrawer {...props} />
@@ -24,10 +25,10 @@ export default function AppLayout() {
                 screenOptions={({ navigation }) => ({
                     headerStyle: {
                         backgroundColor: colors.FirstColor,
-                        shadowColor: colors.FirstColor
+                        shadowColor: colors.FirstColor,
                     },
                     headerLeft: () => {
-                        return <Button title={'open'} onPress={() => navigation.toggleDrawer()}/>
+                        return <View style={styles.burger} onTouchStart={() => navigation.toggleDrawer()}><BurgerIcon /></View>
                     },
                     headerTitleAlign: 'center',
                     headerTitleStyle: {
@@ -56,3 +57,9 @@ export default function AppLayout() {
         </GestureHandlerRootView>
     )
 }
+
+const styles = StyleSheet.create({
+    burger: {
+        paddingLeft: gaps.Small
+    }
+})
