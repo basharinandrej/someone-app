@@ -7,6 +7,7 @@ export const colors = {
     Accent: '#2E2D3D',
     Default: '#fff',
     Danger: '#CC384E',
+    FirstColor: '#1E1F29',
 
     Placeholder: '#5D5B5B'
 }

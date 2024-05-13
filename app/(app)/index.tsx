@@ -1,4 +1,4 @@
-import { Button, Text } from "react-native";
+import { Button, Text, View, StyleSheet } from "react-native";
 import { Link } from 'expo-router'
 import { colors, gaps } from "../../styles/tokens";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
@@ -16,7 +16,7 @@ export default function Home() {
         logout()
     }
 
-    return <>
+    return <View style={styles.container}>
         <Text style={{color: colors.Secondary, marginBottom: gaps.Medium}}>Главная - {access_token}</Text>
         <Text style={{color: colors.Secondary, marginBottom: gaps.Medium}}>{profile.profile.name}</Text>
         <Link style={{color: colors.Secondary}} href={'/login'}><Text>Авторизация</Text></Link>
@@ -24,5 +24,13 @@ export default function Home() {
         <Link style={{color: colors.Secondary}} href={'/course/Docker'}><Text>Курс Docker</Text></Link>
 
         <Button onPress={onPressHandler} title="Выход" />
-    </>
+    </View>
 }
+
+const styles = StyleSheet.create({
+    container: {
+        backgroundColor: colors.Primary,
+        flexGrow:1 
+    },
+    
+})
