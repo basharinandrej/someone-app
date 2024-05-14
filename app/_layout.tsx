@@ -1,11 +1,12 @@
 import { Stack } from "expo-router";
 import { colors } from "../styles/tokens";
 import {StatusBar} from 'expo-status-bar'
-import { SafeAreaProvider } from "react-native-safe-area-context";
+import { SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function RootLayout() {
+    const insets = useSafeAreaInsets();
 
-    return <SafeAreaProvider>
+    return <SafeAreaProvider style={{paddingTop: insets.top}}>
         <StatusBar style={'light'}/>
         <Stack
             screenOptions={{

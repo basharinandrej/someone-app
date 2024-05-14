@@ -7,6 +7,7 @@ import { Drawer } from 'expo-router/drawer';
 import { StyleSheet, View } from "react-native";
 import { CustomDrawer } from "../../widgets/custom-drawer/custom-drawer";
 import BurgerIcon from "../../assets/icons/burger-icon";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 
 export default function AppLayout() {
@@ -17,7 +18,8 @@ export default function AppLayout() {
     }
 
     return (
-        <GestureHandlerRootView >
+        <SafeAreaProvider>
+            <GestureHandlerRootView >
             <Drawer
                 drawerContent={(props) => {
                     return <CustomDrawer {...props} />
@@ -54,7 +56,8 @@ export default function AppLayout() {
                     }}
                 />
             </Drawer>
-        </GestureHandlerRootView>
+            </GestureHandlerRootView>
+        </SafeAreaProvider>
     )
 }
 
