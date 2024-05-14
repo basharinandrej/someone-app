@@ -9,6 +9,7 @@ import { useAtom, useSetAtom } from 'jotai'
 import { logoutAtom } from '../../entities/auth/model/auth.store'
 import { getProfileAtom } from '../../entities/user/model/user.store'
 import { useEffect } from 'react'
+import CloseIcon from '../../assets/icons/close-icon'
 
 const MENU = [
     { text: 'Главная', href: '/'},
@@ -18,7 +19,8 @@ const MENU = [
 export const CustomDrawer = (props: DrawerContentComponentProps) => {
     const logout = useSetAtom(logoutAtom)
     const [profile, getProfile] = useAtom(getProfileAtom)
-    const onPressHandler = () => logout()
+
+    const onPressLogoutHandler = () => logout()
 
     useEffect(() => {
         getProfile()
@@ -35,6 +37,8 @@ export const CustomDrawer = (props: DrawerContentComponentProps) => {
         >
             <Text style={styles.name}>{profile.profile.name}</Text>
 
+            <Pressable onPress={() => props.navigation.closeDrawer()}><CloseIcon/></Pressable>
+
             {MENU.map((menuItem, idx) => {
                 const isActive = props.state.index === idx
 
@@ -46,7 +50,7 @@ export const CustomDrawer = (props: DrawerContentComponentProps) => {
                 </Link>
             })}
 
-            <Pressable style={styles.logout} onPress={onPressHandler}><Text style={{color: colors.Default}}>Выход</Text></Pressable>
+            <Pressable style={styles.logout} onPress={onPressLogoutHandler}><Text style={{color: colors.Default}}>Выход</Text></Pressable>
         </DrawerContentScrollView>
     )
 }
