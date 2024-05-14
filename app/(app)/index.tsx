@@ -2,8 +2,8 @@ import { Text, View, StyleSheet } from "react-native";
 import { Link } from 'expo-router'
 import { colors, gaps } from "../../styles/tokens";
 import { useAtom, useAtomValue } from "jotai";
-import { profileAtom } from "../entities/user/model/user.store";
-import { loginAtom } from "../entities/auth/model/auth.store";
+import { profileAtom } from "../../entities/user/model/user.store";
+import { loginAtom } from "../../entities/auth/model/auth.store";
 
 
 

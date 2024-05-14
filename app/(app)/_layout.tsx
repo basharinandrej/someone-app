@@ -1,6 +1,6 @@
 import { Redirect } from "expo-router";
 import { colors, gaps } from "../../styles/tokens";
-import { loginAtom } from "../entities/auth/model/auth.store";
+import { loginAtom } from "../../entities/auth/model/auth.store";
 import { useAtomValue } from "jotai";
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Drawer } from 'expo-router/drawer';

@@ -5,8 +5,10 @@ import {
 import { Text, Pressable, StyleSheet } from 'react-native'
 import { colors, gaps } from '../../styles/tokens'
 import { Link } from 'expo-router'
-import { useSetAtom } from 'jotai'
-import { logoutAtom } from '../../app/entities/auth/model/auth.store'
+import { useAtom, useSetAtom } from 'jotai'
+import { logoutAtom } from '../../entities/auth/model/auth.store'
+import { getProfileAtom } from '../../entities/user/model/user.store'
+import { useEffect } from 'react'
 
 const MENU = [
     { text: 'Главная', href: '/'},
@@ -15,9 +17,12 @@ const MENU = [
 
 export const CustomDrawer = (props: DrawerContentComponentProps) => {
     const logout = useSetAtom(logoutAtom)
-    const onPressHandler = () => {
-        logout()
-    }
+    const [profile, getProfile] = useAtom(getProfileAtom)
+    const onPressHandler = () => logout()
+
+    useEffect(() => {
+        getProfile()
+    }, [])
 
     return (
         <DrawerContentScrollView 
@@ -28,6 +33,8 @@ export const CustomDrawer = (props: DrawerContentComponentProps) => {
             }}
             
         >
+            <Text style={styles.name}>{profile.profile.name}</Text>
+
             {MENU.map((menuItem, idx) => {
                 const isActive = props.state.index === idx
 
@@ -39,13 +46,15 @@ export const CustomDrawer = (props: DrawerContentComponentProps) => {
                 </Link>
             })}
 
-
             <Pressable style={styles.logout} onPress={onPressHandler}><Text style={{color: colors.Default}}>Выход</Text></Pressable>
         </DrawerContentScrollView>
     )
 }
 
 const styles = StyleSheet.create({
+    name: {
+        color: colors.Default
+    },
     container: {
         backgroundColor: colors.Primary,
     },

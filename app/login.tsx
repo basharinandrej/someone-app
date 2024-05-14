@@ -4,7 +4,7 @@ import { Link, SplashScreen, router } from 'expo-router'
 import {Input} from '../shared/input/input'
 import {colors, gaps, radiuses, fontSize} from '../styles/tokens'
 import { useAtomValue, useSetAtom } from 'jotai';
-import { loginAtom } from './entities/auth/model/auth.store';
+import { loginAtom } from '../entities/auth/model/auth.store';
 import { mixins } from '../styles/mixins';
 
 export default function Login() {
